@@ -1,0 +1,41 @@
+# Workflow básico de GitHub Actions para ejecutar un script de Python
+
+name: Hola Mundo
+
+# Define cuándo se ejecutará el workflow
+on:
+  # Se ejecuta al hacer push a la rama main
+  push:
+    branches: ["main"]
+
+  # Se ejecuta al crear o actualizar un Pull Request hacia main
+  pull_request:
+    branches: ["main"]
+
+  # Permite ejecutar el workflow manualmente desde la pestaña Actions
+  workflow_dispatch:
+
+# Un workflow está compuesto por uno o más jobs
+jobs:
+  # Job encargado de ejecutar el script de Python
+  ejecutar-hola-mundo:
+
+    # Sistema operativo donde correrá el job
+    runs-on: ubuntu-latest
+
+    # Pasos que se ejecutarán secuencialmente
+    steps:
+
+      # Descarga el contenido del repositorio al runner
+      - name: Clonar repositorio
+        uses: actions/checkout@v4
+
+      # Instala y configura Python
+      - name: Configurar Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      # Ejecuta el script Python
+      - name: Ejecutar script
+        run: python main.py
