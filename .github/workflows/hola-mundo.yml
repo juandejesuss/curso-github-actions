@@ -3,22 +3,12 @@
 name: Hola Mundo
 
 # Define cuándo se ejecutará el workflow
-on:
-  # Se ejecuta al hacer push a la rama main
-  push:
-    branches: ["main"]
-
-  # Se ejecuta al crear o actualizar un Pull Request hacia main
-  pull_request:
-    branches: ["main"]
-
-  # Permite ejecutar el workflow manualmente desde la pestaña Actions
-  workflow_dispatch:
+on: [push]
 
 # Un workflow está compuesto por uno o más jobs
 jobs:
   # Job encargado de ejecutar el script de Python
-  ejecutar-hola-mundo:
+  hola-mundo:
 
     # Sistema operativo donde correrá el job
     runs-on: ubuntu-latest
@@ -35,6 +25,11 @@ jobs:
         uses: actions/setup-python@v5
         with:
           python-version: '3.12'
+
+      # Ejecuta el script Python
+      - name: Definir variable
+        run: echo "USERNAME=${{ github.actor }}" >> $GITHUB_ENV
+
 
       # Ejecuta el script Python
       - name: Ejecutar script
