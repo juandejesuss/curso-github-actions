@@ -21,11 +21,11 @@ jobs:
 
       # Descarga el contenido del repositorio al runner
       - name: Clonar repositorio
-        uses: actions/checkout@v7.0.0
+        uses: actions/checkout@v7
 
       # Instala y configura Python
       - name: Configurar Python
-        uses: actions/setup-python@v6.3.0
+        uses: actions/setup-python@v6
         with:
           python-version: '3.13'
 
