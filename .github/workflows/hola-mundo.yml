@@ -1,6 +1,6 @@
 # Workflow básico de GitHub Actions para ejecutar un script de Python
-
-name: Hola Mundo
+name: Aprendiendo GitHub Actions
+run-name: Estoy aprendiendo GitHub Actions
 
 # Define cuándo se ejecutará el workflow
 on: [push]
