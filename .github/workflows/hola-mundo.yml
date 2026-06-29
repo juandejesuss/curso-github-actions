@@ -1,0 +1,39 @@
+# Workflow básico de GitHub Actions para ejecutar un script de Python
+
+# Nombre del workflow que aparecerá en la pestana de github (Opcional
+name: Aprendiendo GitHub Actions
+# Nombre del run especifico del workflow que aparecera en la pestaña actions en Github (Opcional)
+run-name: Estoy aprendiendo GitHub Actions
+
+# Define cuándo se ejecutará el workflow
+on: [push]
+
+# Un workflow está compuesto por uno o más jobs
+jobs:
+  # Job encargado de ejecutar el script de Python
+  hola-mundo:
+
+    # Sistema operativo donde correrá el job
+    runs-on: ubuntu-latest
+
+    # Pasos que se ejecutarán secuencialmente
+    steps:
+
+      # Descarga el contenido del repositorio al runner
+      - name: Clonar repositorio
+        uses: actions/checkout@v7
+
+      # Instala y configura Python
+      - name: Configurar Python
+        uses: actions/setup-python@v6
+        with:
+          python-version: '3.13'
+
+      # Ejecuta el script Python
+      - name: Definir variable
+        run: echo "USERNAME=${{ github.actor }}" >> $GITHUB_ENV
+
+
+      # Ejecuta el script Python
+      - name: Ejecutar script
+        run: python main.py
